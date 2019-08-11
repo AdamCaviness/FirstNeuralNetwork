@@ -19,10 +19,10 @@ namespace FirstNeuralNetwork
             if (Layers.Count > 0)
                 dendriteCount = Layers.Last().Neurons.Count;
 
-            foreach (var element in layer.Neurons)
+            foreach (var neuron in layer.Neurons)
             {
                 for (var i = 0; i < dendriteCount; i++)
-                    element.Dendrites.Add(new Dendrite());
+                    neuron.Dendrites.Add(new Dendrite());
             }
         }
 

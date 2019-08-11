@@ -5,12 +5,12 @@ namespace FirstNeuralNetwork
 {
     public class NeuralLayer
     {
-        public NeuralLayer(int count, double initialWeight, string name = "")
+        public NeuralLayer(int neuronCount, double initialWeight, string name = "")
         {
             Name = name;
             Weight = initialWeight;
             Neurons = new List<Neuron>();
-            for (var i = 0; i < count; i++)
+            for (var i = 0; i < neuronCount; i++)
                 Neurons.Add(new Neuron());
         }
 
