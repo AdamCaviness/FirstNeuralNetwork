@@ -6,29 +6,29 @@ namespace FirstNeuralNetwork
     {
         private double _weight;
 
-        public Neuron ()
+        public Neuron()
         {
-            Dendrites = new List<Dendrite> ();
-            OutputPulse = new Pulse ();
+            Dendrites = new List<Dendrite>();
+            OutputPulse = new Pulse();
         }
 
         public List<Dendrite> Dendrites { get; set; }
         public Pulse OutputPulse { get; set; }
 
-        public void Fire ()
+        public void Fire()
         {
-            OutputPulse.Value = Sum ();
-            OutputPulse.Value = Activation (OutputPulse.Value);
+            OutputPulse.Value = Sum();
+            OutputPulse.Value = Activation(OutputPulse.Value);
         }
 
-        public void Compute (double learningRate, double delta)
+        public void Compute(double learningRate, double delta)
         {
             _weight += learningRate * delta;
             foreach (var terminal in Dendrites)
                 terminal.SynapticWeight = _weight;
         }
 
-        private double Sum ()
+        private double Sum()
         {
             var computeValue = 0.0d;
             foreach (var dendrite in Dendrites)
@@ -36,7 +36,7 @@ namespace FirstNeuralNetwork
 
             return computeValue;
         }
-        private double Activation (double input)
+        private double Activation(double input)
         {
             var threshold = 1d;
             return input >= threshold ? 0 : threshold;

@@ -4,7 +4,7 @@ namespace FirstNeuralNetwork
 {
     class Program
     {
-        static void Main (string[] args)
+        static void Main(string[] args)
         {
             var model = new NetworkModel();
             model.Layers.Add(new NeuralLayer(2, 0.1, "INPUT"));

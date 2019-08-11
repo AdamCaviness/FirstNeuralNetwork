@@ -7,26 +7,26 @@ namespace FirstNeuralNetwork
 {
     public class NetworkModel
     {
-        public NetworkModel ()
+        public NetworkModel()
         {
-            Layers = new List<NeuralLayer> ();
+            Layers = new List<NeuralLayer>();
         }
 
-        public void AddLayer (NeuralLayer layer)
+        public void AddLayer(NeuralLayer layer)
         {
             var dendriteCount = 1;
 
             if (Layers.Count > 0)
-                dendriteCount = Layers.Last ().Neurons.Count;
+                dendriteCount = Layers.Last().Neurons.Count;
 
             foreach (var element in layer.Neurons)
             {
                 for (var i = 0; i < dendriteCount; i++)
-                    element.Dendrites.Add (new Dendrite ());
+                    element.Dendrites.Add(new Dendrite());
             }
         }
 
-        public void Build ()
+        public void Build()
         {
             var i = 0;
             foreach (var layer in Layers)
@@ -35,7 +35,7 @@ namespace FirstNeuralNetwork
                     break;
 
                 var nextLayer = Layers[i + 1];
-                CreateNetwork (layer, nextLayer);
+                CreateNetwork(layer, nextLayer);
 
                 i++;
             }
@@ -46,33 +46,33 @@ namespace FirstNeuralNetwork
 
         // }
 
-        public void Print ()
+        public void Print()
         {
-            var dt = new DataTable ();
-            dt.Columns.Add ("Name");
-            dt.Columns.Add ("Neurons");
-            dt.Columns.Add ("Weight");
+            var dt = new DataTable();
+            dt.Columns.Add("Name");
+            dt.Columns.Add("Neurons");
+            dt.Columns.Add("Weight");
 
             foreach (var layer in Layers)
             {
-                var dr = dt.NewRow ();
+                var dr = dt.NewRow();
                 dr[0] = layer.Name;
                 dr[1] = layer.Neurons.Count;
                 dr[2] = layer.Weight;
 
-                dt.Rows.Add (dr);
+                dt.Rows.Add(dr);
             }
 
             var builder = ConsoleTableBuilder.From(dt);
-            builder.ExportAndWrite ();
+            builder.ExportAndWrite();
         }
 
-        public void CreateNetwork (NeuralLayer connectingFrom, NeuralLayer connectingTo)
+        public void CreateNetwork(NeuralLayer connectingFrom, NeuralLayer connectingTo)
         {
             foreach (var to in connectingTo.Neurons)
             {
                 foreach (var from in connectingFrom.Neurons)
-                    to.Dendrites.Add (new Dendrite () { InputPulse = to.OutputPulse, SynapticWeight = connectingTo.Weight });
+                    to.Dendrites.Add(new Dendrite() { InputPulse = to.OutputPulse, SynapticWeight = connectingTo.Weight });
             }
         }
 
