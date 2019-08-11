@@ -14,14 +14,21 @@ namespace FirstNeuralNetwork
                 Neurons.Add(new Neuron());
         }
 
-        public void Compute(double learningRate, double delta)
-        {
-            foreach (var neuron in Neurons)
-                neuron.Compute(learningRate, delta);
-        }
         public void Log()
         {
             Console.WriteLine($"{Name}, Weight: {Weight}");
+        }
+        public void Forward()
+        {
+            foreach (var neuron in Neurons)
+                neuron.Fire();
+        }
+        public void Optimize(double learningRate, double delta)
+        {
+            Weight += learningRate * delta;
+
+            foreach (var neuron in Neurons)
+                neuron.UpdateWeights(Weight);
         }
 
         public string Name { get; set; }

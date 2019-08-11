@@ -4,8 +4,6 @@ namespace FirstNeuralNetwork
 {
     public class Neuron
     {
-        private double _weight;
-
         public Neuron()
         {
             Dendrites = new List<Dendrite>();
@@ -21,11 +19,10 @@ namespace FirstNeuralNetwork
             OutputPulse.Value = Activation(OutputPulse.Value);
         }
 
-        public void Compute(double learningRate, double delta)
+        public void UpdateWeights(double newWeights)
         {
-            _weight += learningRate * delta;
             foreach (var terminal in Dendrites)
-                terminal.SynapticWeight = _weight;
+                terminal.SynapticWeight = newWeights;
         }
 
         private double Sum()
