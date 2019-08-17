@@ -78,7 +78,7 @@ namespace FirstNeuralNetwork
 
                 // Optimize the synaptic weights.
                 OptimizeWeights(accuracySum / yCounter);
-                Console.WriteLine($"Epoch: {epoch}, Accuracy: {(accuracySum / yCounter) * 100}");
+                Console.WriteLine($"Epoch: {epoch}, Accuracy: {(accuracySum / yCounter) * 100}%");
 
                 epoch++;
             }
@@ -107,10 +107,17 @@ namespace FirstNeuralNetwork
 
         public void CreateNetwork(NeuralLayer connectingFrom, NeuralLayer connectingTo)
         {
+            foreach (var from in connectingTo.Neurons)
+            {
+                from.Dendrites = new List<Dendrite>();
+                from.Dendrites.Add(new Dendrite());
+            }
+
             foreach (var to in connectingTo.Neurons)
             {
+                to.Dendrites = new List<Dendrite>();
                 foreach (var from in connectingFrom.Neurons)
-                    to.Dendrites.Add(new Dendrite() { InputPulse = to.OutputPulse, SynapticWeight = connectingTo.Weight });
+                    to.Dendrites.Add(new Dendrite() { InputPulse = from.OutputPulse, SynapticWeight = connectingTo.Weight });
             }
         }
 
