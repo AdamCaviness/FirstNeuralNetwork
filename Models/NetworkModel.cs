@@ -42,7 +42,7 @@ namespace FirstNeuralNetwork
             }
         }
 
-        public void Train (NeuralData x, NeuralData y, int iterations, double learningRate = 0.1)
+        public void Train(NeuralData x, NeuralData y, int iterations, double learningRate = 0.1)
         {
             var epoch = 1;
 
@@ -54,10 +54,10 @@ namespace FirstNeuralNetwork
                 var outputs = new List<double>();
 
                 // Loop through the data rows.
-                for (var i=0; i<x.Data.Length; i++)
+                for (var i = 0; i < x.Data.Length; i++)
                 {
                     // Set the input data into the first layer.
-                    for (var j=0; j< x.Data[i].Length; j++)
+                    for (var j = 0; j < x.Data[i].Length; j++)
                         inputLayer.Neurons[j].OutputPulse.Value = x.Data[i][j];
 
                     // Fire all the neurons and collect the output.
@@ -68,17 +68,18 @@ namespace FirstNeuralNetwork
                 // Check the accuracy score against y with the actual output.
                 var accuracySum = 0d;
                 var yCounter = 0;
-                outputs.ForEach(o => {
+                outputs.ForEach(o =>
+                {
                     if (o == y.Data[yCounter].First())
                         accuracySum++;
-                    
+
                     yCounter++;
                 });
 
                 // Optimize the synaptic weights.
                 OptimizeWeights(accuracySum / yCounter);
-                Console.WriteLine($"Epoch: {epoch}, Accuracy: {(accuracySum/yCounter) * 100}");
-                
+                Console.WriteLine($"Epoch: {epoch}, Accuracy: {(accuracySum / yCounter) * 100}");
+
                 epoch++;
             }
         }

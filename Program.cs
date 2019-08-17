@@ -12,7 +12,7 @@ namespace FirstNeuralNetwork
             model.Layers.Add(new NeuralLayer(1, 0.1, "OUTPUT"));
 
             model.Build();
-            Console.WriteLine("----Before Training------------");
+            Console.WriteLine("------------Before Training------------");
             model.Print();
 
             var X = new NeuralData(4);
@@ -29,7 +29,7 @@ namespace FirstNeuralNetwork
 
             model.Train(X, Y, iterations: 10, learningRate: 0.1);
             Console.WriteLine();
-            Console.WriteLine("----After Training------------");
+            Console.WriteLine("------------After Training------------");
             model.Print();
         }
     }
