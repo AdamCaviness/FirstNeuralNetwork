@@ -53,7 +53,7 @@ namespace FirstNeuralNetwork
                 var inputLayer = Layers[0];
                 var outputs = new List<double>();
 
-                // Loop through the record.
+                // Loop through the data rows.
                 for (var i=0; i<x.Data.Length; i++)
                 {
                     // Set the input data into the first layer.
