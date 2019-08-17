@@ -109,13 +109,11 @@ namespace FirstNeuralNetwork
         {
             foreach (var from in connectingTo.Neurons)
             {
-                from.Dendrites = new List<Dendrite>();
                 from.Dendrites.Add(new Dendrite());
             }
 
             foreach (var to in connectingTo.Neurons)
             {
-                to.Dendrites = new List<Dendrite>();
                 foreach (var from in connectingFrom.Neurons)
                     to.Dendrites.Add(new Dendrite() { InputPulse = from.OutputPulse, SynapticWeight = connectingTo.Weight });
             }
